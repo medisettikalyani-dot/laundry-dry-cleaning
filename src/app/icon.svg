@@ -1,0 +1,41 @@
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Warm background rounded square -->
+  <rect width="32" height="32" rx="7" fill="#F8F0E7" />
+  
+  <!-- Hanger Hook -->
+  <path
+    d="M 16 11 C 16 8.5, 18.5 7, 18.5 5.5 C 18.5 4, 17 3, 15.5 3 C 14 3, 13 4, 13 5"
+    stroke="#C74708"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  />
+  
+  <!-- Hanger Shoulders -->
+  <path
+    d="M 6 18 C 5 17.5, 5 16.5, 6 16 L 16 11 L 26 16 C 27 16.5, 27 17.5, 26 18"
+    stroke="#C74708"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  
+  <!-- Royal Blue Wave -->
+  <path
+    d="M 11 16.5 C 13.5 14, 17.5 14, 21 16 C 19 18, 15 18, 11 16.5 Z"
+    fill="#2869AE"
+  />
+  
+  <!-- Lettermark APM in mini font -->
+  <text
+    x="16"
+    y="26"
+    text-anchor="middle"
+    fill="#C74708"
+    font-size="7.5"
+    font-weight="900"
+    font-family="system-ui, sans-serif"
+    letter-spacing="0.5"
+  >
+    APM
+  </text>
+</svg>
