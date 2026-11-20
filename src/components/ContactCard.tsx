@@ -232,7 +232,7 @@ export function ContactCard({ isHomepage = false }: ContactCardProps) {
               <button
                 type="button"
                 onClick={handleReset}
-                className="w-full py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-[#202020] bg-white border border-[#E9D9C9] hover:bg-[#F8F0E7] transition-colors shadow-xs"
+                className="w-full py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-[#202020] bg-white border border-[#E9D9C9] hover:bg-[#F8F0E7] transition-colors shadow-sm"
               >
                 Book Another Service
               </button>

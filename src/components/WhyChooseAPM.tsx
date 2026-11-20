@@ -3,20 +3,24 @@ import { cn } from "@/lib/utils";
 
 interface BenefitItem {
   id: string;
+  number: string;
   title: string;
   description: string;
+  tag: string;
   icon: React.ReactNode;
 }
 
 const benefits: BenefitItem[] = [
   {
     id: "quality-cleaning",
+    number: "01",
     title: "Quality Cleaning",
-    description: "Professional cleaning to keep your clothes fresh and clean.",
+    description: "Professional cleaning to keep your clothes fresh, bright, and spotless.",
+    tag: "Spotless Wash",
     icon: (
       /* Clean Sparkle / Garment Care Icon */
       <svg
-        className="w-7 h-7 sm:w-8 sm:h-8"
+        className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -33,12 +37,14 @@ const benefits: BenefitItem[] = [
   },
   {
     id: "fabric-protection",
+    number: "02",
     title: "Fabric Protection",
-    description: "Careful handling for different fabrics and garments.",
+    description: "Careful handling for delicate fabrics, silks, and everyday garments.",
+    tag: "Gentle Care",
     icon: (
       /* Protective Shield & Delicate Care Icon */
       <svg
-        className="w-7 h-7 sm:w-8 sm:h-8"
+        className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -55,12 +61,14 @@ const benefits: BenefitItem[] = [
   },
   {
     id: "convenient-service",
+    number: "03",
     title: "Convenient Service",
-    description: "Easy laundry pickup and doorstep delivery.",
+    description: "Effortless scheduling with doorstep pickup and prompt delivery.",
+    tag: "Doorstep Pickup",
     icon: (
       /* Doorstep Pickup & Delivery Van Icon */
       <svg
-        className="w-7 h-7 sm:w-8 sm:h-8"
+        className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -77,12 +85,14 @@ const benefits: BenefitItem[] = [
   },
   {
     id: "customer-care",
+    number: "04",
     title: "Customer Care",
-    description: "Friendly support and attention to every order.",
+    description: "Friendly assistance, order updates, and attention to every detail.",
+    tag: "Direct Support",
     icon: (
       /* Warm & Attentive Customer Heart Icon */
       <svg
-        className="w-7 h-7 sm:w-8 sm:h-8"
+        className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -103,12 +113,18 @@ export function WhyChooseAPM() {
   return (
     <section
       id="why-choose-apm"
-      className="relative overflow-hidden py-16 sm:py-20 md:py-24 bg-[#F8F0E7]"
+      className="relative overflow-hidden py-10 sm:py-14 md:py-18 bg-[#F8F0E7]"
       aria-label="Why Choose APM Laundry and Dry Cleaning"
     >
-      {/* Subtle Background Gradient Decorative Detail */}
+      {/* Subtle Background Radial Warm Glow */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(253,242,236,0.8),rgba(248,240,231,1))]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(253,242,236,0.85),rgba(248,240,231,1))]"
+        aria-hidden="true"
+      />
+
+      {/* Decorative Soft Ambient Glow Behind Cards */}
+      <div
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 max-w-4xl h-72 bg-gradient-to-r from-[#FDE8DC]/30 via-[#F5D8C4]/20 to-[#EAD2BE]/25 blur-3xl rounded-full"
         aria-hidden="true"
       />
 
@@ -116,22 +132,22 @@ export function WhyChooseAPM() {
         {/* ========================================================= */}
         {/* SECTION HEADER                                            */}
         {/* ========================================================= */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
-          {/* Small Eyebrow Label */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9D9C9]/70 border border-[#E9D9C9] text-[11px] font-semibold text-[#202020] uppercase tracking-wider mb-2.5 shadow-sm">
+        <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-10 md:mb-12">
+          {/* Eyebrow Pill Badge */}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFE3D5] border border-[#DECCB8] text-[11px] font-bold text-[#202020] uppercase tracking-wider mb-2.5 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#C74708]" />
-            <span>WHY APM</span>
+            <span>Why APM</span>
           </div>
 
-          {/* Main Heading with Brand Orange Highlight */}
-          <h2 className="text-2xl sm:text-3xl md:text-[2.25rem] font-bold tracking-tight text-[#202020] leading-tight">
+          {/* Main Heading with Brand Orange Accent */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#202020] leading-tight">
             Why Choose <span className="text-[#C74708]">APM</span>?
           </h2>
 
-          {/* Small Decorative Orange Accent Below Heading */}
-          <div className="w-10 h-1 bg-[#C74708] rounded-full mx-auto mt-3 mb-3.5" />
+          {/* Clean Orange Accent Line */}
+          <div className="w-10 sm:w-12 h-1 bg-[#C74708] rounded-full mx-auto mt-2.5 mb-2.5 sm:mt-3 sm:mb-3" />
 
-          {/* Short Centered Subtitle */}
+          {/* Centered Subtitle */}
           <p className="text-xs sm:text-sm md:text-base text-[#4F4F4F] leading-relaxed max-w-md mx-auto">
             We care for your clothes with attention, quality and convenience.
           </p>
@@ -139,52 +155,87 @@ export function WhyChooseAPM() {
 
         {/* ========================================================= */}
         {/* FOUR BENEFIT CARDS                                        */}
-        {/* Desktop: 4 columns | Tablet: 2 columns | Mobile: 1 col    */}
+        {/* Mobile: 2x2 Grid | Desktop: 4 Columns                     */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 items-stretch">
           {benefits.map((benefit) => (
             <div
               key={benefit.id}
               className={cn(
-                "group relative flex flex-col justify-start",
-                "p-6 sm:p-7 rounded-2xl",
-                "bg-white",
-                "border border-[#E9D9C9]",
-                "shadow-[0_4px_20px_rgba(32,32,32,0.03)]",
-                "hover:shadow-[0_16px_32px_rgba(199,71,8,0.09)]",
+                "group relative flex flex-col justify-between",
+                "p-3.5 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl",
+                "bg-gradient-to-b from-white via-white to-[#FDFBF7]",
+                "border border-[#EADCCF]/90",
+                "shadow-[0_4px_20px_-4px_rgba(199,71,8,0.05),0_2px_6px_-1px_rgba(0,0,0,0.02)]",
+                "hover:shadow-[0_16px_36px_-6px_rgba(199,71,8,0.14),0_6px_12px_-2px_rgba(0,0,0,0.04)]",
                 "hover:border-[#C74708]/35",
                 "transition-all duration-300 ease-out",
                 "hover:-translate-y-1.5",
                 "overflow-hidden"
               )}
             >
-              {/* Thin Orange Accent Detail on Card */}
-              <div className="absolute top-0 inset-x-0 h-[2px] bg-[#C74708] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Top Accent Gradient Bar on Hover */}
+              <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-[#C74708] via-[#E86726] to-[#F9C943] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Soft Peach Circular Background with Orange Line Icon */}
+              {/* Faint Warm Ambient Glow in Corner on Hover */}
               <div
-                className={cn(
-                  "w-14 h-14 sm:w-16 sm:h-16 rounded-full mb-5",
-                  "bg-[#FDF2EC] text-[#C74708] border border-[#F3D5C3]",
-                  "flex items-center justify-center flex-shrink-0",
-                  "shadow-[0_2px_8px_rgba(199,71,8,0.06)]",
-                  "transition-all duration-300 ease-out",
-                  "group-hover:bg-[#C74708] group-hover:text-white group-hover:border-[#C74708]",
-                  "group-hover:shadow-[0_6px_16px_rgba(199,71,8,0.22)]"
-                )}
-              >
-                {benefit.icon}
+                className="pointer-events-none absolute -bottom-6 -right-6 w-20 h-20 rounded-full bg-gradient-to-br from-[#C74708]/10 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                aria-hidden="true"
+              />
+
+              <div>
+                {/* Top Row: Icon Badge + Step Numeral Pill */}
+                <div className="flex items-center justify-between mb-2.5 sm:mb-4">
+                  {/* Rich Squircle Icon Container with Soft Glow */}
+                  <div
+                    className={cn(
+                      "w-10 h-10 sm:w-12 sm:h-12 md:w-13 md:h-13 rounded-xl sm:rounded-2xl",
+                      "bg-gradient-to-br from-[#FFF5EE] to-[#FDE8DC] text-[#C74708] border border-[#F3D5C3]",
+                      "flex items-center justify-center flex-shrink-0",
+                      "shadow-sm",
+                      "transition-all duration-300 ease-out",
+                      "group-hover:bg-[#C74708] group-hover:text-white group-hover:border-[#C74708]",
+                      "group-hover:shadow-[0_8px_20px_rgba(199,71,8,0.25)]",
+                      "group-hover:scale-105"
+                    )}
+                  >
+                    {benefit.icon}
+                  </div>
+
+                  {/* Refined Step Number Badge */}
+                  <span className="inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider bg-[#F9F1E8] text-[#9E7356] border border-[#EBDCCF] group-hover:bg-[#C74708] group-hover:text-white group-hover:border-[#C74708] transition-all duration-300 shadow-sm">
+                    {benefit.number}
+                  </span>
+                </div>
+
+                {/* Card Title */}
+                <h3 className="text-xs sm:text-base md:text-lg font-bold text-[#202020] tracking-tight mb-1 sm:mb-1.5 group-hover:text-[#C74708] transition-colors duration-200 leading-snug">
+                  {benefit.title}
+                </h3>
+
+                {/* Card Description */}
+                <p className="text-[11px] sm:text-xs md:text-sm text-[#555] leading-snug sm:leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
 
-              {/* Card Title */}
-              <h3 className="text-base sm:text-lg font-bold text-[#202020] tracking-tight mb-2 group-hover:text-[#C74708] transition-colors duration-200">
-                {benefit.title}
-              </h3>
-
-              {/* Card Description */}
-              <p className="text-xs sm:text-sm text-[#4F4F4F] leading-relaxed">
-                {benefit.description}
-              </p>
+              {/* Bottom Feature Verification Pill / Tag */}
+              <div className="mt-3 pt-2.5 sm:mt-4 sm:pt-3 border-t border-[#F4E8DC] flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-[#8B4513]">
+                <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#FFF2EB] border border-[#F3D5C3] flex items-center justify-center flex-shrink-0 text-[#C74708] group-hover:bg-[#C74708] group-hover:text-white group-hover:border-[#C74708] transition-colors">
+                  <svg
+                    className="w-2.5 h-2.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.8}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <span className="truncate tracking-tight font-medium text-[#7C3612] group-hover:text-[#C74708] transition-colors">
+                  {benefit.tag}
+                </span>
+              </div>
             </div>
           ))}
         </div>

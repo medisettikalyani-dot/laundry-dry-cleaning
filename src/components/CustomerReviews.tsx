@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 export interface CustomerReview {
   id: string;
   name: string;
-  location?: string;
   service?: string;
   rating: number;
   review: string;
@@ -25,7 +24,6 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-1",
     name: "Vikram Reddy",
-    location: "Banjara Hills, Hyderabad",
     service: "Suit & Sherwani Dry Cleaning",
     rating: 5,
     review:
@@ -34,7 +32,6 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-2",
     name: "Priya Sharma",
-    location: "Jubilee Hills, Hyderabad",
     service: "Wash & Steam Iron",
     rating: 5,
     review:
@@ -43,7 +40,6 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-3",
     name: "Karthik Subramanian",
-    location: "Gachibowli, Hyderabad",
     service: "Doorstep Pickup & Delivery",
     rating: 5,
     review:
@@ -52,16 +48,14 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-4",
     name: "Ananya Rao",
-    location: "Madhapur, Hyderabad",
     service: "Delicate Silk Saree Care",
     rating: 5,
     review:
-      "Handled my expensive silk sarees with exceptional care. The fabric feels soft, colors remain vibrant, and the fold is immaculate.",
+      "Handled my expensive silk sarees with exceptional care. Fabric feels soft, colors remain vibrant, and the fold is immaculate.",
   },
   {
     id: "review-5",
     name: "Rohit Varma",
-    location: "Kondapur, Hyderabad",
     service: "Routine Wash & Fold",
     rating: 5,
     review:
@@ -70,7 +64,6 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-6",
     name: "Dr. Meera Nair",
-    location: "Hitec City, Hyderabad",
     service: "Winter Coat & Blazer Care",
     rating: 5,
     review:
@@ -281,11 +274,6 @@ export function CustomerReviews({
                       <h4 className="text-sm font-semibold text-[#202020] truncate leading-tight">
                         {item.name}
                       </h4>
-                      {item.location && (
-                        <p className="text-[11px] text-[#787878] truncate leading-tight mt-0.5">
-                          {item.location}
-                        </p>
-                      )}
                     </div>
                   </div>
                   <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#C74708] bg-[#FDF2EC] px-2.5 py-0.5 rounded-full border border-[#C74708]/15 flex-shrink-0">
