@@ -10,22 +10,12 @@ export function cn(...classes: (string | undefined | null | false)[]): string {
 }
 
 /**
- * Format a number as currency (e.g. for service price estimates).
+ * Format a number as Indian Rupee currency (INR, en-IN).
  */
-export function formatPrice(amount: number, currency: string = "USD"): string {
-  return new Intl.NumberFormat("en-US", {
+export function formatPrice(amount: number): string {
+  return new Intl.NumberFormat("en-IN", {
     style: "currency",
-    currency,
+    currency: "INR",
+    maximumFractionDigits: 0,
   }).format(amount);
-}
-
-/**
- * Format standard date string for bookings and schedules.
- */
-export function formatDate(date: Date | string): string {
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(date));
 }

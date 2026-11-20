@@ -4,18 +4,22 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { APMLogo } from "./APMLogo";
+import { siteConfig } from "@/lib/seoConfig";
 
 interface NavItem {
   label: string;
   href: string;
+  sectionId?: string;
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
-  { label: "Gallery", href: "/#gallery" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Home", href: "/", sectionId: "hero" },
+  { label: "Services", href: "/#services", sectionId: "services" },
+  { label: "How It Works", href: "/#how-it-works", sectionId: "how-it-works" },
+  { label: "Reviews", href: "/#reviews", sectionId: "reviews" },
+  { label: "About", href: "/#about", sectionId: "about" },
+  { label: "FAQ", href: "/#faq", sectionId: "faq" },
+  { label: "Contact", href: "/#contact", sectionId: "contact" },
 ];
 
 export function Navbar() {
@@ -24,58 +28,57 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
 
-  // Keep activeItem in sync with pathname and hash changes
+  // Scroll spy with IntersectionObserver
   useEffect(() => {
-    const updateActiveItem = () => {
-      if (pathname === "/contact") {
-        setActiveItem("Contact");
-      } else if (pathname === "/terms") {
-        setActiveItem("");
-      } else if (pathname === "/privacy") {
-        setActiveItem("");
-      } else if (pathname === "/") {
-        if (typeof window !== "undefined" && window.location.hash) {
-          const hash = window.location.hash.toLowerCase();
-          if (hash.includes("contact") || hash.includes("book")) setActiveItem("Contact");
-          else if (hash.includes("services") || hash.includes("wash") || hash.includes("dry")) setActiveItem("Services");
-          else if (hash.includes("about")) setActiveItem("About");
-          else if (hash.includes("gallery")) setActiveItem("Gallery");
-          else setActiveItem("Home");
-        } else {
-          setActiveItem("Home");
+    if (pathname !== "/") {
+      if (pathname === "/contact") setActiveItem("Contact");
+      else setActiveItem("");
+      return;
+    }
+
+    const sectionIds = ["services", "how-it-works", "reviews", "about", "faq", "contact"];
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const matched = navItems.find((item) => item.sectionId === entry.target.id);
+          if (matched) {
+            setActiveItem(matched.label);
+          }
         }
-      }
+      });
     };
 
-    updateActiveItem();
-    window.addEventListener("hashchange", updateActiveItem);
-    return () => window.removeEventListener("hashchange", updateActiveItem);
-  }, [pathname]);
+    const observer = new IntersectionObserver(observerCallback, {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
+    });
 
-  // Track scroll position to enhance background blur and shadow subtly
-  useEffect(() => {
-    let ticking = false;
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Check top of page for Home
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const isScrolled = window.scrollY > 20;
-          setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
-          ticking = false;
-        });
-        ticking = true;
+      setScrolled(window.scrollY > 20);
+      if (window.scrollY < 200) {
+        setActiveItem("Home");
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
-  // Close mobile menu on Escape key press
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [pathname]);
+
+  // Handle Escape key on mobile menu
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMobileMenuOpen(false);
-      }
+      if (e.key === "Escape") setMobileMenuOpen(false);
     };
 
     if (mobileMenuOpen) {
@@ -96,36 +99,31 @@ export function Navbar() {
     setMobileMenuOpen(false);
   };
 
+  const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
+    "Hello APM Laundry! I would like to book a pickup."
+  )}`;
+
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "py-1.5 sm:py-2" : "py-2 sm:py-2.5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Navbar Pill / Shell */}
+    <header className="sticky top-0 z-50 w-full py-2 bg-[#F8F0E7]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav
-          className={`relative flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-2xl md:rounded-full bg-[#F8F0E7]/95 backdrop-blur-md border border-[#E9D9C9] transition-all duration-300 ${
-            scrolled
-              ? "shadow-[0_8px_30px_rgb(32,32,32,0.06)]"
-              : "shadow-[0_2px_12px_rgb(32,32,32,0.03)]"
+          className={`flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-full bg-[#FAF5EF] border border-[#E9D9C9] transition-shadow duration-200 ${
+            scrolled ? "shadow-md" : "shadow-sm"
           }`}
           aria-label="Main Navigation"
         >
-          {/* Left: APM Brand Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link
-              href="/"
-              onClick={() => handleLinkClick("Home")}
-              className="inline-flex items-center rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2869AE]"
-              aria-label="APM Laundry & Dry Cleaning Home"
-            >
-              <APMLogo className="w-[104px] sm:w-[118px] md:w-[130px] lg:w-[136px] h-auto object-contain transition-transform duration-200 hover:scale-[1.02]" />
-            </Link>
-          </div>
+          {/* Logo */}
+          <Link
+            href="/"
+            onClick={() => handleLinkClick("Home")}
+            className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2869AE] rounded-lg min-h-[44px]"
+            aria-label="APM Laundry & Dry Cleaning Home"
+          >
+            <APMLogo className="w-[110px] sm:w-[124px] h-auto object-contain" />
+          </Link>
 
-          {/* Center: Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          {/* Desktop Navigation Links (Pill highlight, NO red dot) */}
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => {
               const isActive = activeItem === item.label;
               return (
@@ -133,73 +131,53 @@ export function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={() => handleLinkClick(item.label)}
-                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`min-h-[44px] px-3.5 py-2 rounded-full text-sm transition-colors inline-flex items-center justify-center ${
                     isActive
-                      ? "text-[#C74708] bg-[#E9D9C9]/60 font-semibold"
-                      : "text-[#202020] hover:text-[#C74708] hover:bg-[#E9D9C9]/35"
+                      ? "text-[#C74708] bg-[#E9D9C9] font-bold"
+                      : "text-[#202020] hover:text-[#C74708] hover:bg-[#E9D9C9]/50 font-medium"
                   }`}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#C74708]" />
-                  )}
                 </Link>
               );
             })}
           </div>
 
-          {/* Right: Desktop CTA Button */}
-          <div className="hidden md:flex items-center">
-            <Link
-              href="/#contact"
-              onClick={() => handleLinkClick("Contact")}
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-[#C74708] hover:bg-[#AF3C05] active:scale-[0.98] transition-all duration-200 shadow-sm hover:shadow-[0_4px_14px_rgba(199,71,8,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2869AE] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8F0E7]"
+          {/* Book Now Button */}
+          <div className="hidden sm:flex items-center gap-3">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-h-[44px] px-5 py-2 rounded-full text-sm font-semibold text-white bg-[#C74708] hover:bg-[#AF3C05] transition-colors inline-flex items-center gap-1.5 shadow-sm"
             >
-              Book Now
-            </Link>
+              <span>Book Now</span>
+            </a>
           </div>
 
-          {/* Right: Mobile Hamburger Button */}
-          <div className="flex md:hidden items-center">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-xl text-[#202020] hover:text-[#C74708] hover:bg-[#E9D9C9]/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2869AE]"
-              aria-controls="mobile-navigation"
-              aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            >
-              <div className="w-6 h-5 relative flex flex-col justify-between">
-                <span
-                  className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen ? "rotate-45 translate-y-2 bg-[#C74708]" : ""
-                  }`}
-                />
-                <span
-                  className={`w-full h-0.5 bg-current rounded-full transition-all duration-200 ease-in-out ${
-                    mobileMenuOpen ? "opacity-0" : "opacity-100"
-                  }`}
-                />
-                <span
-                  className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen ? "-rotate-45 -translate-y-2.5 bg-[#C74708]" : ""
-                  }`}
-                />
-              </div>
-            </button>
-          </div>
+          {/* Mobile Menu Button (Min 44px) */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] rounded-full flex items-center justify-center text-[#202020] hover:bg-[#E9D9C9] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C74708]"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            )}
+          </button>
         </nav>
 
-        {/* Mobile Navigation Drawer */}
-        <div
-          id="mobile-navigation"
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            mobileMenuOpen
-              ? "max-h-[420px] opacity-100 mt-2.5"
-              : "max-h-0 opacity-0 pointer-events-none mt-0"
-          }`}
-        >
-          <div className="rounded-2xl bg-[#F8F0E7] border border-[#E9D9C9] p-5 shadow-[0_12px_32px_rgba(32,32,32,0.08)] space-y-4">
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden mt-2 p-4 rounded-2xl bg-white border border-[#E9D9C9] shadow-lg animate-fadeIn">
             <div className="flex flex-col space-y-1">
               {navItems.map((item) => {
                 const isActive = activeItem === item.label;
@@ -208,36 +186,29 @@ export function Navbar() {
                     key={item.label}
                     href={item.href}
                     onClick={() => handleLinkClick(item.label)}
-                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                    className={`min-h-[44px] px-4 py-2.5 rounded-xl text-base font-medium flex items-center transition-colors ${
                       isActive
-                        ? "text-[#C74708] bg-[#E9D9C9]/60 font-semibold"
-                        : "text-[#202020] hover:text-[#C74708] hover:bg-[#E9D9C9]/30"
+                        ? "text-[#C74708] bg-[#FAF5EF] font-bold"
+                        : "text-[#202020] hover:bg-[#FAF5EF]"
                     }`}
                   >
-                    <span>{item.label}</span>
-                    {isActive && (
-                      <span className="w-2 h-2 rounded-full bg-[#C74708]" />
-                    )}
+                    {item.label}
                   </Link>
                 );
               })}
-            </div>
-
-            {/* Mobile CTA */}
-            <div className="pt-2 border-t border-[#E9D9C9]/60">
-              <Link
-                href="/#contact"
-                onClick={() => {
-                  handleLinkClick("Contact");
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full flex items-center justify-center px-6 py-3.5 rounded-full text-base font-semibold text-white bg-[#C74708] hover:bg-[#AF3C05] active:scale-[0.98] transition-all duration-200 shadow-[0_4px_14px_rgba(199,71,8,0.25)]"
-              >
-                Book Now
-              </Link>
+              <div className="pt-3 border-t border-[#E9D9C9]">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-[48px] px-4 py-3 rounded-xl text-base font-bold text-white bg-[#C74708] hover:bg-[#AF3C05] transition-colors flex items-center justify-center gap-2"
+                >
+                  <span>Book Now</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );

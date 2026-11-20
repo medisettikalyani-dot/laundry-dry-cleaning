@@ -17,13 +17,12 @@ const steps: StepItem[] = [
     id: "step-1",
     stepNumber: "1",
     title: "Schedule a Pickup",
-    description: "Book your laundry pickup at a convenient time.",
+    description: "Book your laundry or dry cleaning pickup via WhatsApp or our online booking form.",
     image: "/images/how-it-works/step-1-pickup.jpg",
     accent: "orange",
     icon: (
-      /* Calendar & Clock Schedule Icon */
       <svg
-        className="w-3.5 h-3.5"
+        className="w-4 h-4"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -41,13 +40,12 @@ const steps: StepItem[] = [
     id: "step-2",
     stepNumber: "2",
     title: "Expert Cleaning",
-    description: "Our team carefully washes and cleans your clothes.",
+    description: "Garments are sorted by fabric, washed or dry cleaned, and steam pressed with precision.",
     image: "/images/how-it-works/step-2-cleaning.jpg",
     accent: "blue",
     icon: (
-      /* Washing Machine Drum & Bubbles Icon */
       <svg
-        className="w-3.5 h-3.5"
+        className="w-4 h-4"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -67,13 +65,12 @@ const steps: StepItem[] = [
     id: "step-3",
     stepNumber: "3",
     title: "Doorstep Delivery",
-    description: "Receive your fresh, clean clothes at your doorstep.",
-    image: "/images/how-it-works/step-3-delivery.jpg",
+    description: "Freshly packaged clothes are delivered back to your doorstep across Hyderabad in 24-48 hours.",
+    image: "/images/how-it-works/step-3-delivery-van.jpg",
     accent: "orange",
     icon: (
-      /* Doorstep Delivery Van Icon */
       <svg
-        className="w-3.5 h-3.5"
+        className="w-4 h-4"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -94,35 +91,22 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative overflow-hidden py-10 sm:py-14 md:py-16 bg-[#F8F0E7]"
-      aria-label="How APM Works - Laundry Made Simple in 3 Easy Steps"
+      className="relative overflow-hidden py-12 sm:py-16 md:py-20 bg-[#F8F0E7]"
+      aria-label="How APM Works"
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ========================================================= */}
-        {/* SECTION HEADER                                            */}
-        {/* ========================================================= */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12">
-          {/* Subtle Accent Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9D9C9]/70 border border-[#E9D9C9] text-[11px] font-semibold text-[#202020] uppercase tracking-wider mb-2.5 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C74708]" />
-            <span>How It Works</span>
-          </div>
-
-          {/* Section Main Title */}
-          <h2 className="text-2xl sm:text-3xl md:text-[2.25rem] font-bold tracking-tight text-[#202020] leading-tight">
-            Laundry Made Simple in <span className="text-[#C74708]">3 Easy Steps</span>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header: Plain heading without eyebrow label */}
+        <div className="max-w-2xl mb-10 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#202020]">
+            How It Works
           </h2>
-
-          {/* Section Subtitle */}
-          <p className="mt-2 text-xs sm:text-sm md:text-base text-[#4F4F4F] leading-relaxed max-w-md mx-auto">
-            From pickup to delivery, we make laundry effortless.
+          <p className="mt-2 text-sm sm:text-base text-[#4F4F4F] [text-wrap:pretty]">
+            Effortless pickup, professional care, and prompt return in three simple steps.
           </p>
         </div>
 
-        {/* ========================================================= */}
-        {/* THREE COMPACT CARDS: HORIZONTAL ON DESKTOP, STACKED MOBILE */}
-        {/* ========================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 items-stretch max-w-4xl mx-auto">
+        {/* Three Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {steps.map((step) => {
             const isOrange = step.accent === "orange";
 
@@ -130,75 +114,44 @@ export function HowItWorks() {
               <div
                 key={step.id}
                 className={cn(
-                  "group relative flex flex-col justify-between",
-                  "p-4 sm:p-5 rounded-2xl",
-                  "bg-white/90 backdrop-blur-sm hover:bg-white",
-                  "border border-[#E9D9C9]",
-                  "shadow-[0_4px_16px_rgba(32,32,32,0.03)]",
-                  "hover:shadow-[0_14px_30px_rgba(32,32,32,0.08)]",
-                  "transition-all duration-300 ease-out",
-                  "hover:-translate-y-1.5",
-                  isOrange
-                    ? "hover:border-[#C74708]/40 hover:shadow-[0_14px_30px_rgba(199,71,8,0.10)]"
-                    : "hover:border-[#2869AE]/40 hover:shadow-[0_14px_30px_rgba(40,105,174,0.10)]"
+                  "flex flex-col justify-between",
+                  "p-5 sm:p-6 rounded-2xl",
+                  "bg-white border border-[#E9D9C9]",
+                  "shadow-sm hover:shadow-md transition-shadow duration-200"
                 )}
               >
                 <div>
-                  {/* Top Header: Step Badge with Icon + Step Numeral */}
-                  <div className="flex items-center justify-between mb-3">
-                    {/* Pill Badge with SVG Icon + Step Label */}
-                    <div
-                      className={cn(
-                        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider border transition-colors duration-300",
-                        isOrange
-                          ? "bg-[#FDF2EC] text-[#C74708] border-[#C74708]/20 group-hover:bg-[#C74708] group-hover:text-white group-hover:border-[#C74708]"
-                          : "bg-[#EAF1F8] text-[#2869AE] border-[#2869AE]/20 group-hover:bg-[#2869AE] group-hover:text-white group-hover:border-[#2869AE]"
-                      )}
-                    >
-                      <span>{step.icon}</span>
-                      <span>Step {step.stepNumber}</span>
-                    </div>
-
-                    {/* Faint Decorative Step Numeral */}
+                  {/* Step Header */}
+                  <div className="flex items-center justify-between mb-4">
                     <span
                       className={cn(
-                        "text-xl sm:text-2xl font-black tracking-tight transition-colors duration-300 select-none",
+                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold border",
                         isOrange
-                          ? "text-[#E9D9C9] group-hover:text-[#C74708]/25"
-                          : "text-[#E9D9C9] group-hover:text-[#2869AE]/25"
+                          ? "bg-[#FDF2EC] text-[#C74708] border-[#C74708]/30"
+                          : "bg-[#EAF1F8] text-[#2869AE] border-[#2869AE]/30"
                       )}
                     >
-                      0{step.stepNumber}
+                      {step.icon}
+                      <span>Step {step.stepNumber}</span>
                     </span>
                   </div>
 
-                  {/* 3D Illustration Container (Compact & Refined) */}
-                  <div
-                    className={cn(
-                      "relative w-full aspect-[16/11] rounded-xl overflow-hidden mb-3.5",
-                      "border border-[#E9D9C9]/80 bg-[#F8F0E7]",
-                      "shadow-[0_2px_10px_rgba(32,32,32,0.03)] transition-all duration-300",
-                      isOrange
-                        ? "group-hover:border-[#C74708]/30 group-hover:shadow-[0_6px_18px_rgba(199,71,8,0.08)]"
-                        : "group-hover:border-[#2869AE]/30 group-hover:shadow-[0_6px_18px_rgba(40,105,174,0.08)]"
-                    )}
-                  >
+                  {/* Photo Container */}
+                  <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-[#E9D9C9] bg-[#F8F0E7]">
                     <Image
                       src={step.image}
                       alt={`${step.title} - APM Laundry Care`}
                       fill
-                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 30vw, 300px"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 360px"
+                      className="object-cover object-center"
                     />
                   </div>
 
-                  {/* Step Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-[#202020] tracking-tight transition-colors duration-200">
+                  {/* Step Title & Description */}
+                  <h3 className="text-lg sm:text-xl font-bold text-[#202020]">
                     {step.title}
                   </h3>
-
-                  {/* Step Description */}
-                  <p className="mt-1 sm:mt-1.5 text-xs sm:text-[13px] text-[#4F4F4F] leading-relaxed">
+                  <p className="mt-2 text-sm text-[#4F4F4F] leading-relaxed [text-wrap:pretty]">
                     {step.description}
                   </p>
                 </div>

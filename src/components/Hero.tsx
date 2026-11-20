@@ -1,198 +1,189 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { siteConfig } from "@/lib/seoConfig";
 
-interface FeatureCallout {
+interface HeroFact {
   id: string;
   title: string;
   description: string;
   icon: React.ReactNode;
 }
 
-const leftFeatures: FeatureCallout[] = [
+const heroFacts: HeroFact[] = [
   {
-    id: "hygienic",
+    id: "hygiene",
     title: "Fresh & Hygienic Cleaning",
-    description: "Soft, fresh, and revitalized garments",
+    description: "Sanitized daily wash with gentle, skin-safe care.",
     icon: (
-      /* Clean Shirt Outline Icon */
-      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a2 2 0 001.34 1.57L6 11.4V20a2 2 0 002 2h8a2 2 0 002-2v-8.6l1.8-0.67a2 2 0 001.34-1.57l.58-3.47a2 2 0 00-1.34-2.23z" />
+      <svg className="w-5 h-5 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3.75H4.875A1.125 1.125 0 003.75 4.875v3c0 .356.17.69.458.9l2.792 2.031V19.5a1.5 1.5 0 001.5 1.5h7a1.5 1.5 0 001.5-1.5v-8.694l2.792-2.03a1.125 1.125 0 00.458-.901v-3a1.125 1.125 0 00-1.125-1.125H15M9 3.75a3 3 0 006 0M9 3.75h6" />
       </svg>
     ),
   },
   {
     id: "dry-cleaning",
     title: "Expert Dry Cleaning",
-    description: "Expertly dry-cleaned for pristine results",
+    description: "Stain care for suits, silks & ethnic wear.",
     icon: (
-      /* Washing Machine Drum Icon */
-      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <rect x="3" y="3" width="18" height="18" rx="3" strokeWidth={1.8} />
-        <circle cx="12" cy="13" r="4.5" strokeWidth={1.8} />
-        <circle cx="12" cy="13" r="1.5" fill="currentColor" />
-        <circle cx="7" cy="6" r="1" fill="currentColor" />
-        <circle cx="10" cy="6" r="1" fill="currentColor" />
+      <svg className="w-5 h-5 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <rect x="3.75" y="3" width="16.5" height="18" rx="2.25" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12.75" r="4.5" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="7.5" cy="6" r="0.75" fill="currentColor" />
+        <circle cx="10.5" cy="6" r="0.75" fill="currentColor" />
       </svg>
     ),
   },
-];
-
-const rightFeatures: FeatureCallout[] = [
   {
-    id: "delicate",
+    id: "fabric-care",
     title: "Delicate Fabric Care",
-    description: "Delicate fabrics treated with expertise",
+    description: "Color protection & safe handling for fine fabrics.",
     icon: (
-      /* Delicate Garment / Star Care Icon */
-      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      <svg className="w-5 h-5 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.562.562 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
       </svg>
     ),
   },
   {
     id: "finishing",
     title: "Quality Garment Finishing",
-    description: "Hand-finished & ready to wear",
+    description: "Crisp steam press & fast doorstep delivery.",
     icon: (
-      /* Quality Garment Finishing / Clock Icon */
-      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <circle cx="12" cy="12" r="9" strokeWidth={1.8} />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3" />
+      <svg className="w-5 h-5 text-[#202020]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5v4.5l3 3" />
       </svg>
     ),
   },
 ];
 
 export function Hero() {
+  const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
+    "Hello APM Laundry! I would like to schedule a doorstep pickup in Hyderabad."
+  )}`;
+
   return (
-    <section className="relative overflow-hidden pt-1 pb-6 sm:pb-8 lg:pb-10">
+    <section className="relative overflow-hidden pt-2 pb-6 sm:pb-8 lg:pb-10" aria-label="Hero section">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ========================================================= */}
-        {/* 1. CENTERED HERO HEADLINE & CTA                           */}
-        {/* ========================================================= */}
+        {/* Centered Headline with H1 and accent styling */}
         <div className="text-center max-w-2xl mx-auto">
-          {/* Large Bold Centered Headline */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold tracking-tight text-[#202020] leading-[1.14]">
+          <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight text-[#202020] leading-[1.15] [text-wrap:balance]">
             Fresh Clothes, <br className="hidden sm:inline" />
             <span className="text-[#C74708]">Expert Care</span>, Every Time.
           </h1>
 
-          {/* Short Supporting Description */}
-          <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-[15px] text-[#4F4F4F] max-w-md mx-auto leading-relaxed">
-            Professional laundry and dry cleaning services in Hyderabad with doorstep care for every garment.
+          <p className="mt-2.5 sm:mt-3 text-sm sm:text-base text-[#555555] max-w-xl mx-auto leading-relaxed [text-wrap:pretty]">
+            Professional laundry and dry cleaning in Hyderabad with doorstep pickup, delicate fabric care, and fast 24–48h return.
           </p>
 
-          {/* Prominent Burnt Orange CTA Button */}
-          <div className="mt-3 sm:mt-3.5 flex items-center justify-center">
-            <Link
-              href="#contact"
-              className="group inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-[#C74708] hover:bg-[#AF3C05] active:scale-[0.98] transition-all duration-200 shadow-[0_4px_16px_rgba(199,71,8,0.28)] hover:shadow-[0_8px_24px_rgba(199,71,8,0.38)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2869AE]"
+          {/* Single Sleek CTA Button */}
+          <div className="mt-4 sm:mt-5 flex items-center justify-center">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[46px] px-7 py-2.5 rounded-full text-sm sm:text-base font-semibold text-white bg-[#C74708] hover:bg-[#AF3C05] active:scale-[0.99] transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C74708] gap-2"
             >
               <span>Book Your Service</span>
-              <svg
-                className="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth={2.2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
-            </Link>
+            </a>
           </div>
         </div>
 
-        {/* ========================================================= */}
-        {/* 2. MAIN VISUAL: BURNT ORANGE ARCH + 4 BALANCED CALLOUTS   */}
-        {/* ========================================================= */}
-        <div className="mt-5 sm:mt-6 flex flex-col items-center">
-          {/* Accessible Semantic Parent Heading for Feature Callouts (visually hidden) */}
-          <h2 className="sr-only">Core Garment Care Features</h2>
-
-          {/* Desktop Composition: Left Callouts - Solid Orange Arch - Right Callouts */}
-          <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-10">
-            
-            {/* Left Feature Column (Desktop: Exactly 2 items, vertically distributed) */}
-            <div className="hidden lg:flex flex-col justify-between h-[280px] sm:h-[305px] md:h-[325px] w-[160px] xl:w-[175px] flex-shrink-0 py-1">
-              {leftFeatures.map((feature) => (
-                <div
-                  key={feature.id}
-                  className="group flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1"
-                >
-                  {/* Clean Circular Badge */}
-                  <div className="w-12 h-12 rounded-full bg-[#EAD8C7] flex items-center justify-center mb-2 shadow-[0_2px_8px_rgba(32,32,32,0.04)] group-hover:bg-[#E2CEBC] transition-colors">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xs sm:text-[13px] font-bold text-[#202020] leading-snug mb-0.5">
-                    {feature.title}
-                  </h3>
-                  <p className="text-[11px] text-[#595959] leading-tight max-w-[155px]">
-                    {feature.description}
-                  </p>
+        {/* Central Arch Composition flanked by minimal circular highlights */}
+        <div className="mt-4 sm:mt-5 lg:mt-6 flex items-center justify-center">
+          <div className="w-full max-w-4xl flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 xl:gap-12">
+            {/* Left 2 Highlights (Desktop) */}
+            <div className="hidden lg:flex flex-col justify-between h-[280px] lg:h-[305px] w-[180px] xl:w-[200px] py-1 text-center">
+              {/* Feature 1 */}
+              <div className="flex flex-col items-center">
+                <div className="w-10 h-10 rounded-full bg-[#EFE6DD] flex items-center justify-center mb-1.5 shadow-xs">
+                  {heroFacts[0].icon}
                 </div>
-              ))}
+                <h3 className="text-sm font-bold text-[#202020]">
+                  {heroFacts[0].title}
+                </h3>
+                <p className="mt-0.5 text-xs text-[#555555] leading-snug max-w-[170px]">
+                  {heroFacts[0].description}
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="flex flex-col items-center">
+                <div className="w-10 h-10 rounded-full bg-[#EFE6DD] flex items-center justify-center mb-1.5 shadow-xs">
+                  {heroFacts[1].icon}
+                </div>
+                <h3 className="text-sm font-bold text-[#202020]">
+                  {heroFacts[1].title}
+                </h3>
+                <p className="mt-0.5 text-xs text-[#555555] leading-snug max-w-[170px]">
+                  {heroFacts[1].description}
+                </p>
+              </div>
             </div>
 
-            {/* Central Solid Burnt Orange Arch Frame */}
+            {/* Central Arch Frame */}
             <div className="relative flex-shrink-0">
-              <div className="w-[240px] sm:w-[260px] md:w-[280px] h-[280px] sm:h-[305px] md:h-[325px] rounded-t-[120px] sm:rounded-t-[130px] md:rounded-t-[140px] rounded-b-2xl bg-[#C74708] p-2 sm:p-2.5 shadow-[0_16px_40px_rgba(199,71,8,0.22)]">
-                {/* Inner Image Container (Centered directly on hands & colorful folded laundry) */}
-                <div className="relative w-full h-full rounded-t-[112px] sm:rounded-t-[122px] md:rounded-t-[132px] rounded-b-xl overflow-hidden bg-[#E9D9C9]">
+              <div className="w-[230px] sm:w-[250px] lg:w-[260px] h-[270px] sm:h-[290px] lg:h-[305px] rounded-t-[135px] rounded-b-2xl bg-[#C74708] p-2 shadow-md">
+                <div className="relative w-full h-full rounded-t-[127px] rounded-b-xl overflow-hidden bg-[#FAF5EF]">
                   <Image
                     src="/images/hero-arch-crop.jpg"
-                    alt="Neatly folded colorful clothes held in hands - APM Care"
+                    alt="APM professional laundry and dry cleaning services in Hyderabad"
                     fill
                     priority
-                    className="object-cover hover:scale-[1.03] transition-transform duration-500 ease-out"
-                    sizes="(max-width: 640px) 240px, (max-width: 1024px) 260px, 280px"
+                    sizes="(max-width: 640px) 230px, (max-width: 1024px) 250px, 260px"
+                    className="object-cover object-center"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Right Feature Column (Desktop: Exactly 2 items, vertically distributed) */}
-            <div className="hidden lg:flex flex-col justify-between h-[280px] sm:h-[305px] md:h-[325px] w-[160px] xl:w-[175px] flex-shrink-0 py-1">
-              {rightFeatures.map((feature) => (
-                <div
-                  key={feature.id}
-                  className="group flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1"
-                >
-                  {/* Clean Circular Badge */}
-                  <div className="w-12 h-12 rounded-full bg-[#EAD8C7] flex items-center justify-center mb-2 shadow-[0_2px_8px_rgba(32,32,32,0.04)] group-hover:bg-[#E2CEBC] transition-colors">
-                    {feature.icon}
+            {/* Right 2 Highlights (Desktop) */}
+            <div className="hidden lg:flex flex-col justify-between h-[280px] lg:h-[305px] w-[180px] xl:w-[200px] py-1 text-center">
+              {/* Feature 3 */}
+              <div className="flex flex-col items-center">
+                <div className="w-10 h-10 rounded-full bg-[#EFE6DD] flex items-center justify-center mb-1.5 shadow-xs">
+                  {heroFacts[2].icon}
+                </div>
+                <h3 className="text-sm font-bold text-[#202020]">
+                  {heroFacts[2].title}
+                </h3>
+                <p className="mt-0.5 text-xs text-[#555555] leading-snug max-w-[170px]">
+                  {heroFacts[2].description}
+                </p>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="flex flex-col items-center">
+                <div className="w-10 h-10 rounded-full bg-[#EFE6DD] flex items-center justify-center mb-1.5 shadow-xs">
+                  {heroFacts[3].icon}
+                </div>
+                <h3 className="text-sm font-bold text-[#202020]">
+                  {heroFacts[3].title}
+                </h3>
+                <p className="mt-0.5 text-xs text-[#555555] leading-snug max-w-[170px]">
+                  {heroFacts[3].description}
+                </p>
+              </div>
+            </div>
+
+            {/* Mobile & Tablet Layout (2x2 Grid below the Arch) */}
+            <div className="lg:hidden grid grid-cols-2 gap-y-5 gap-x-4 w-full max-w-md mt-6 text-center">
+              {heroFacts.map((fact) => (
+                <div key={fact.id} className="flex flex-col items-center">
+                  <div className="w-9 h-9 rounded-full bg-[#EFE6DD] flex items-center justify-center mb-1.5 shadow-xs">
+                    {fact.icon}
                   </div>
-                  <h3 className="text-xs sm:text-[13px] font-bold text-[#202020] leading-snug mb-0.5">
-                    {feature.title}
+                  <h3 className="text-xs sm:text-sm font-bold text-[#202020]">
+                    {fact.title}
                   </h3>
-                  <p className="text-[11px] text-[#595959] leading-tight max-w-[155px]">
-                    {feature.description}
+                  <p className="mt-0.5 text-[11px] sm:text-xs text-[#555555] leading-snug max-w-[160px]">
+                    {fact.description}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* ========================================================= */}
-          {/* MOBILE & TABLET: CLEAN 2x2 CIRCULAR CALLOUT GRID         */}
-          {/* ========================================================= */}
-          <div className="grid grid-cols-2 gap-5 sm:gap-6 w-full max-w-sm sm:max-w-md lg:hidden mt-6">
-            {[...leftFeatures, ...rightFeatures].map((feature) => (
-              <div
-                key={feature.id}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="w-11 h-11 rounded-full bg-[#EAD8C7] flex items-center justify-center mb-2 shadow-sm">
-                  {feature.icon}
-                </div>
-                <p className="text-xs sm:text-[13px] font-bold text-[#202020] leading-snug mb-0.5">
-                  {feature.title}
-                </p>
-                <p className="text-[11px] text-[#595959] leading-tight max-w-[145px]">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       </div>

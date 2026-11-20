@@ -19,9 +19,9 @@ const config: Config = {
         },
         beige: {
           DEFAULT: "#E9D9C9",
-          100: "#F2E8DE",
+          100: "#FAF5EF",
           200: "#E9D9C9",
-          300: "#D8C2AC",
+          300: "#DECDBD",
         },
         burntOrange: {
           DEFAULT: "#C74708",
@@ -30,8 +30,8 @@ const config: Config = {
           light: "#FDF2EC",
         },
         mustard: {
-          DEFAULT: "#F9C943",
-          hover: "#E8B830",
+          DEFAULT: "#E8B830",
+          hover: "#D6A523",
           light: "#FEF7E3",
         },
         royalBlue: {
@@ -42,7 +42,7 @@ const config: Config = {
         charcoal: {
           DEFAULT: "#202020",
           muted: "#4F4F4F",
-          light: "#787878",
+          light: "#54504C", // Darkened from #787878 to pass 4.5:1 contrast
         },
       },
       fontFamily: {
@@ -53,8 +53,13 @@ const config: Config = {
           "BlinkMacSystemFont",
           "Segoe UI",
           "Roboto",
-          "Helvetica Neue",
           "sans-serif",
+        ],
+        serif: [
+          "var(--font-serif)",
+          "Playfair Display",
+          "Georgia",
+          "serif",
         ],
       },
     },
