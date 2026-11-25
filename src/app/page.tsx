@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
+import { SpecialGarmentsSection } from "@/components/services/SpecialGarmentsSection";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CustomerReviews } from "@/components/CustomerReviews";
 import { About } from "@/components/About";
@@ -13,7 +14,7 @@ import { faqSchema } from "@/data/faqData";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8F0E7] text-[#202020]">
+    <div className="min-h-screen flex flex-col bg-[#F4F8FA] text-[#1E293B]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -23,28 +24,31 @@ export default function HomePage() {
         {/* 1. Hero */}
         <Hero />
 
-        {/* 2. Services with Pricing & Garments */}
+        {/* 2. Main Services */}
         <Services />
 
-        {/* 3. How It Works: The 3 Steps */}
+        {/* 3. Special Items Section */}
+        <SpecialGarmentsSection />
+
+        {/* 4. How It Works: The 3 Steps */}
         <HowItWorks />
 
-        {/* 4. Real Customer Reviews (Moved up to build trust early) */}
+        {/* 5. Real Customer Reviews */}
         <CustomerReviews />
 
-        {/* 5. About & Why Choose (Merged concise section) */}
+        {/* 6. About & Why Choose */}
         <About />
 
-        {/* 6. Areas We Serve in Hyderabad */}
+        {/* 7. Areas We Serve in Hyderabad */}
         <AreasWeServe />
 
-        {/* 7. FAQ (Native details/summary with shared schema) */}
+        {/* 8. FAQ */}
         <FAQ />
 
-        {/* 8. Booking Form (WhatsApp) */}
+        {/* 9. Booking Form (WhatsApp) */}
         <section
           id="contact"
-          className="relative overflow-hidden py-10 sm:py-14 md:py-16 bg-[#F8F0E7] border-t border-[#E9D9C9]"
+          className="relative overflow-hidden py-10 sm:py-14 md:py-16 bg-[#F4F8FA] border-t border-[#E2EDF3]"
           aria-label="Contact and Service Booking"
         >
           <div id="book" className="scroll-mt-24" />

@@ -8,8 +8,7 @@ interface StepItem {
   title: string;
   description: string;
   image: string;
-  accent: "orange" | "blue";
-  icon: React.ReactNode;
+  tag: string;
 }
 
 const steps: StepItem[] = [
@@ -17,73 +16,25 @@ const steps: StepItem[] = [
     id: "step-1",
     stepNumber: "1",
     title: "Schedule a Pickup",
-    description: "Book your laundry or dry cleaning pickup via WhatsApp or our online booking form.",
+    description: "Book a pickup on WhatsApp or through our quick online form in less than a minute.",
     image: "/images/how-it-works/step-1-pickup.jpg",
-    accent: "orange",
-    icon: (
-      <svg
-        className="w-4 h-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-        aria-hidden="true"
-      >
-        <rect x="3" y="4" width="18" height="17" rx="3" strokeWidth={2} />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M16 2v4M8 2v4M3 9.5h18" />
-        <circle cx="12" cy="15" r="3" strokeWidth={1.8} />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 13.5v1.5l1 1" />
-      </svg>
-    ),
+    tag: "WhatsApp or Online",
   },
   {
     id: "step-2",
     stepNumber: "2",
-    title: "Expert Cleaning",
-    description: "Garments are sorted by fabric, washed or dry cleaned, and steam pressed with precision.",
+    title: "Careful Cleaning",
+    description: "We sort your clothes by fabric type, clean them using gentle methods, and steam press them neatly.",
     image: "/images/how-it-works/step-2-cleaning.jpg",
-    accent: "blue",
-    icon: (
-      <svg
-        className="w-4 h-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-        aria-hidden="true"
-      >
-        <rect x="3" y="3" width="18" height="18" rx="3" strokeWidth={2} />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h18" />
-        <circle cx="6.5" cy="5.5" r="1" fill="currentColor" />
-        <circle cx="9.5" cy="5.5" r="1" fill="currentColor" />
-        <circle cx="12" cy="14" r="4.5" strokeWidth={2} />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.8 14c.7-.8 1.5-.8 2.2 0s1.5.8 2.2 0" />
-      </svg>
-    ),
+    tag: "Gentle Wash & Press",
   },
   {
     id: "step-3",
     stepNumber: "3",
     title: "Doorstep Delivery",
-    description: "Freshly packaged clothes are delivered back to your doorstep across Hyderabad in 24-48 hours.",
+    description: "Your clean, neatly packed clothes are delivered back to your home in 24 to 48 hours.",
     image: "/images/how-it-works/step-3-delivery-van.jpg",
-    accent: "orange",
-    icon: (
-      <svg
-        className="w-4 h-4"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375A1.125 1.125 0 012.25 17.625V6.75a1.125 1.125 0 011.125-1.125h11.25c.621 0 1.125.504 1.125 1.125v4.5m-13.5 7.5v-1.5m13.5-6h4.125a1.125 1.125 0 01.993.6l1.71 3.42a1.125 1.125 0 01.172.58v3.65a1.125 1.125 0 01-1.125 1.125h-.75m-6-9.375v9.375m0 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h.75"
-        />
-      </svg>
-    ),
+    tag: "Delivered in 24–48h",
   },
 ];
 
@@ -91,73 +42,61 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative overflow-hidden py-12 sm:py-16 md:py-20 bg-[#F8F0E7]"
-      aria-label="How APM Works"
+      className="relative overflow-hidden py-12 sm:py-16 md:py-20 bg-[#F4F8FA]"
+      aria-label="How APM Laundry Care Works"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header: Plain heading without eyebrow label */}
-        <div className="max-w-2xl mb-10 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#202020]">
+        {/* Section Header: Simple, Clean & Direct */}
+        <div className="max-w-2xl mb-8 sm:mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1E293B]">
             How It Works
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#4F4F4F] [text-wrap:pretty]">
-            Effortless pickup, professional care, and prompt return in three simple steps.
+          <p className="mt-2 text-sm sm:text-base text-[#64748B] [text-wrap:pretty]">
+            Doorstep pickup, expert cleaning, and quick delivery in three simple steps.
           </p>
         </div>
 
-        {/* Three Steps Grid */}
+        {/* Three Steps Grid: Simple, Neat & Breathable */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {steps.map((step) => {
-            const isOrange = step.accent === "orange";
-
-            return (
-              <div
-                key={step.id}
-                className={cn(
-                  "flex flex-col justify-between",
-                  "p-5 sm:p-6 rounded-2xl",
-                  "bg-white border border-[#E9D9C9]",
-                  "shadow-sm hover:shadow-md transition-shadow duration-200"
-                )}
-              >
-                <div>
-                  {/* Step Header */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className={cn(
-                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold border",
-                        isOrange
-                          ? "bg-[#FDF2EC] text-[#C74708] border-[#C74708]/30"
-                          : "bg-[#EAF1F8] text-[#2869AE] border-[#2869AE]/30"
-                      )}
-                    >
-                      {step.icon}
-                      <span>Step {step.stepNumber}</span>
-                    </span>
+          {steps.map((step) => (
+            <article
+              key={step.id}
+              className={cn(
+                "group relative flex flex-col justify-between overflow-hidden",
+                "rounded-2xl bg-white border border-[#E2EDF3]",
+                "shadow-xs hover:shadow-md transition-all duration-200",
+                "hover:-translate-y-1 hover:border-[#1D6F9E]/40"
+              )}
+            >
+              <div>
+                {/* Crisp Image with Subtle Step Badge */}
+                <div className="relative w-full aspect-[16/10] bg-[#F1F5F9] overflow-hidden">
+                  <Image
+                    src={step.image}
+                    alt={`${step.title} - APM Laundry Care`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 360px"
+                    className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transform-none"
+                  />
+                  {/* Floating Clean Step Indicator */}
+                  <div className="absolute top-3.5 left-3.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-xs text-xs font-bold text-[#1D6F9E] shadow-xs border border-white/80">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#74A72E]" />
+                    <span>Step {step.stepNumber}</span>
                   </div>
+                </div>
 
-                  {/* Photo Container */}
-                  <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-4 border border-[#E9D9C9] bg-[#F8F0E7]">
-                    <Image
-                      src={step.image}
-                      alt={`${step.title} - APM Laundry Care`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 360px"
-                      className="object-cover object-center"
-                    />
-                  </div>
-
-                  {/* Step Title & Description */}
-                  <h3 className="text-lg sm:text-xl font-bold text-[#202020]">
+                {/* Card Content */}
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#1E293B] group-hover:text-[#1D6F9E] transition-colors duration-200 mb-2">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-[#4F4F4F] leading-relaxed [text-wrap:pretty]">
+                  <p className="text-sm text-[#64748B] leading-relaxed [text-wrap:pretty]">
                     {step.description}
                   </p>
                 </div>
               </div>
-            );
-          })}
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -9,49 +9,49 @@ export const faqList: FAQItem[] = [
     id: "services-offered",
     question: "What types of laundry services does APM offer in Hyderabad?",
     answer:
-      "APM provides three specialized services across Hyderabad: 1) Wash & Iron for everyday shirts, trousers, and ethnic wear with crisp steam pressing; 2) Dry Cleaning for suits, sherwanis, silk sarees, and delicate fabrics with gentle solvent care; and 3) Wash & Fold for regular everyday laundry billed by weight.",
+      "We offer complete garment care across Hyderabad, including Wash & Iron, Dry Cleaning, Wash & Fold, Ironing Only, Shoe Cleaning, Carpet Cleaning, Steam Ironing, Machine Wash, and Hand Wash. We also specialize in caring for wedding wear, sherwanis, silk sarees, curtains, and heavy blankets.",
   },
   {
     id: "pickup-delivery",
     question: "Do you provide doorstep pickup and delivery?",
     answer:
-      "Yes. APM provides doorstep pickup and delivery across Hyderabad including Jubilee Hills, Banjara Hills, Hitec City, Madhapur, Gachibowli, Kondapur, and surrounding areas. You can book directly on WhatsApp or using our online booking form.",
+      "Yes, we pick up and deliver right to your doorstep across Hyderabad. Pickup and delivery is free within 3 km of our Panchavati Colony center. We serve Manikonda, Puppalguda, Narsingi, Jubilee Hills, Banjara Hills, Hitec City, Madhapur, Gachibowli, Kondapur, and nearby localities. You can book easily on WhatsApp or through our website form.",
   },
   {
     id: "pricing-calculation",
     question: "How is laundry and dry cleaning pricing calculated?",
     answer:
-      "Pricing is simple and transparent: itemized per garment for Wash & Iron and Dry Cleaning based on fabric requirements, and by weight for daily Wash & Fold. Contact us on WhatsApp for exact estimates or custom quotes for your order.",
+      "Our pricing is straightforward and transparent. Wash & Fold is charged by weight, while Wash & Iron and Dry Cleaning are priced per piece depending on the garment. Doorstep pickup is free within 3 km. Feel free to message us on WhatsApp for price details or an estimate.",
   },
   {
     id: "processing-time",
     question: "How long does cleaning and delivery take?",
     answer:
-      "Our standard turnaround time is 24 to 48 hours for regular laundry and wash & iron services. Specialized dry cleaning for ornate bridal wear or heavy blankets may require 48 to 72 hours for thorough fabric care and inspection.",
+      "Regular laundry and wash & iron orders are usually ready in 24 to 48 hours. Items that need extra attention, such as bridal wear, heavy blankets, or delicate sarees, take about 48 to 72 hours so we can clean and inspect them thoroughly.",
   },
   {
     id: "separate-dry-cleaning",
     question: "Is dry cleaning handled separately from regular wash loads?",
     answer:
-      "Yes, absolutely. Dry clean garments are processed in dedicated commercial units using specialized fabric-safe solvents, individual stain treatments, and custom steam finishing to protect embroidery, silks, and tailored cuts.",
+      "Yes, always. Dry clean items are processed separately using gentle, skin-safe solvents rather than water and detergent. We treat stains individually and finish each garment with steam pressing to protect delicate fabrics, embroidery, and fit—with no harsh chemical odor.",
   },
   {
     id: "prepare-clothes",
     question: "How should I prepare my clothes for doorstep pickup?",
     answer:
-      "Place your clothes in any bag ready for our pickup agent. Check and empty all pockets. If any garment has specific stains or requires dry cleaning instead of regular wash, please let our agent know or mention it when booking.",
+      "Just place your clothes in any convenient bag. Please make sure all pockets are empty. If you have garments with specific stains or items that need dry cleaning instead of washing, simply let our pickup person know or add a note when booking.",
   },
   {
     id: "booking-service",
     question: "How can I book a pickup with APM?",
     answer:
-      "Booking takes less than a minute. You can tap 'Book on WhatsApp' to send your pickup details directly to our team, or fill in our quick booking form on this page.",
+      "Booking takes less than a minute. You can tap 'Book on WhatsApp' to send us your pickup address and preferred time, or fill out the short booking form on this page.",
   },
   {
     id: "operating-hours",
     question: "What are your operating hours?",
     answer:
-      "Our pickup and customer care team operates Monday through Sunday from 8:00 AM to 9:00 PM across Hyderabad.",
+      "We are open Saturday through Thursday from 10:00 AM to 10:00 PM. We are closed on Fridays.",
   },
 ];
 

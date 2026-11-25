@@ -19,7 +19,7 @@ const navItems: NavItem[] = [
   { label: "Reviews", href: "/#reviews", sectionId: "reviews" },
   { label: "About", href: "/#about", sectionId: "about" },
   { label: "FAQ", href: "/#faq", sectionId: "faq" },
-  { label: "Contact", href: "/#contact", sectionId: "contact" },
+  { label: "Contact", href: "/contact", sectionId: "contact" },
 ];
 
 export function Navbar() {
@@ -36,10 +36,14 @@ export function Navbar() {
       return;
     }
 
-    const sectionIds = ["services", "how-it-works", "reviews", "about", "faq", "contact"];
+    const sectionIds = ["services", "special-items", "how-it-works", "reviews", "about", "faq", "contact"];
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          if (entry.target.id === "special-items") {
+            setActiveItem("Services");
+            return;
+          }
           const matched = navItems.find((item) => item.sectionId === entry.target.id);
           if (matched) {
             setActiveItem(matched.label);
@@ -104,26 +108,30 @@ export function Navbar() {
   )}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full py-2 bg-[#F8F0E7]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header
+      className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md transition-all duration-200 ${
+        scrolled
+          ? "shadow-sm border-b border-[#E2EDF3]"
+          : "border-b border-[#E2EDF3]/80"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav
-          className={`flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-full bg-[#FAF5EF] border border-[#E9D9C9] transition-shadow duration-200 ${
-            scrolled ? "shadow-md" : "shadow-sm"
-          }`}
+          className="flex items-center justify-between h-16 sm:h-20"
           aria-label="Main Navigation"
         >
           {/* Logo */}
           <Link
             href="/"
             onClick={() => handleLinkClick("Home")}
-            className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2869AE] rounded-lg min-h-[44px]"
+            className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6F9E] rounded-lg transition-transform active:scale-95"
             aria-label="APM Laundry & Dry Cleaning Home"
           >
-            <APMLogo className="w-[110px] sm:w-[124px] h-auto object-contain" />
+            <APMLogo className="h-12 sm:h-16 w-auto" priority />
           </Link>
 
-          {/* Desktop Navigation Links (Pill highlight, NO red dot) */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-1.5">
             {navItems.map((item) => {
               const isActive = activeItem === item.label;
               return (
@@ -131,10 +139,10 @@ export function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={() => handleLinkClick(item.label)}
-                  className={`min-h-[44px] px-3.5 py-2 rounded-full text-sm transition-colors inline-flex items-center justify-center ${
+                  className={`min-h-[40px] px-3.5 py-2 rounded-full text-sm font-semibold transition-all duration-150 inline-flex items-center justify-center ${
                     isActive
-                      ? "text-[#C74708] bg-[#E9D9C9] font-bold"
-                      : "text-[#202020] hover:text-[#C74708] hover:bg-[#E9D9C9]/50 font-medium"
+                      ? "text-[#1D6F9E] bg-[#EBF5FA]"
+                      : "text-[#1E293B] hover:text-[#1D6F9E] hover:bg-[#F4F8FA]"
                   }`}
                 >
                   {item.label}
@@ -143,23 +151,38 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Book Now Button */}
+          {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* Book Now Button */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-[44px] px-5 py-2 rounded-full text-sm font-semibold text-white bg-[#C74708] hover:bg-[#AF3C05] transition-colors inline-flex items-center gap-1.5 shadow-sm"
+              className="min-h-[42px] px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-[#1D6F9E] hover:bg-[#16587E] active:scale-[0.98] transition-all duration-150 inline-flex items-center gap-1.5 shadow-sm hover:shadow-md"
             >
               <span>Book Now</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.2}
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
             </a>
           </div>
 
-          {/* Mobile Menu Button (Min 44px) */}
+          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] rounded-full flex items-center justify-center text-[#202020] hover:bg-[#E9D9C9] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C74708]"
+            className="lg:hidden w-11 h-11 min-h-[44px] min-w-[44px] rounded-xl flex items-center justify-center text-[#1E293B] hover:bg-[#F4F8FA] hover:text-[#1D6F9E] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6F9E]"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -174,42 +197,42 @@ export function Navbar() {
             )}
           </button>
         </nav>
+      </div>
 
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden mt-2 p-4 rounded-2xl bg-white border border-[#E9D9C9] shadow-lg animate-fadeIn">
-            <div className="flex flex-col space-y-1">
-              {navItems.map((item) => {
-                const isActive = activeItem === item.label;
-                return (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => handleLinkClick(item.label)}
-                    className={`min-h-[44px] px-4 py-2.5 rounded-xl text-base font-medium flex items-center transition-colors ${
-                      isActive
-                        ? "text-[#C74708] bg-[#FAF5EF] font-bold"
-                        : "text-[#202020] hover:bg-[#FAF5EF]"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-              <div className="pt-3 border-t border-[#E9D9C9]">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full min-h-[48px] px-4 py-3 rounded-xl text-base font-bold text-white bg-[#C74708] hover:bg-[#AF3C05] transition-colors flex items-center justify-center gap-2"
+      {/* Mobile Dropdown Menu (Clean full-width drawer) */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t border-[#E2EDF3] bg-white px-4 sm:px-6 py-4 shadow-xl animate-fadeIn max-h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-5rem)] overflow-y-auto">
+          <div className="flex flex-col space-y-1">
+            {navItems.map((item) => {
+              const isActive = activeItem === item.label;
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => handleLinkClick(item.label)}
+                  className={`min-h-[44px] px-4 py-2.5 rounded-xl text-base font-semibold flex items-center transition-colors ${
+                    isActive
+                      ? "text-[#1D6F9E] bg-[#EBF5FA]"
+                      : "text-[#1E293B] hover:bg-[#F4F8FA]"
+                  }`}
                 >
-                  <span>Book Now</span>
-                </a>
-              </div>
+                  {item.label}
+                </Link>
+              );
+            })}
+            <div className="pt-4 mt-2 border-t border-[#E2EDF3] flex flex-col gap-2.5">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full min-h-[48px] px-4 py-3 rounded-xl text-base font-bold text-white bg-[#1D6F9E] hover:bg-[#16587E] transition-colors flex items-center justify-center gap-2 shadow-sm"
+              >
+                <span>Book Now on WhatsApp</span>
+              </a>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 }

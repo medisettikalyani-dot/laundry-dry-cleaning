@@ -53,7 +53,7 @@ const breadcrumbSchema = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8F0E7] text-[#202020]">
+    <div className="min-h-screen flex flex-col bg-[#F4F8FA] text-[#1E293B]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -62,34 +62,34 @@ export default function PrivacyPage() {
       <main className="flex-1 py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center space-x-2 text-xs sm:text-sm text-[#4F4F4F]">
-            <Link href="/" className="hover:text-[#C74708] transition-colors">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center space-x-2 text-xs sm:text-sm text-[#475569]">
+            <Link href="/" className="hover:text-[#1D6F9E] transition-colors">
               Home
             </Link>
             <span className="text-[#A0988E]">/</span>
-            <span className="text-[#C74708] font-semibold">Privacy Policy</span>
+            <span className="text-[#1D6F9E] font-semibold">Privacy Policy</span>
           </nav>
 
-          <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#E9D9C9] p-6 sm:p-10 shadow-[0_4px_24px_rgba(32,32,32,0.04)]">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#202020] mb-2">
+          <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#E2EDF3] p-6 sm:p-10 shadow-[0_4px_24px_rgba(32,32,32,0.04)]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#1E293B] mb-2">
               Privacy Policy
             </h1>
-            <p className="text-xs sm:text-sm text-[#787878] mb-8 pb-4 border-b border-[#E9D9C9]">
+            <p className="text-xs sm:text-sm text-[#787878] mb-8 pb-4 border-b border-[#E2EDF3]">
               Last updated: January 2026
             </p>
 
-            <div className="space-y-6 text-sm sm:text-base text-[#4F4F4F] leading-relaxed">
+            <div className="space-y-6 text-sm sm:text-base text-[#475569] leading-relaxed">
               <section>
-                <h2 className="text-lg sm:text-xl font-bold text-[#202020] mb-2">1. Information We Collect</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-[#1E293B] mb-2">1. Information We Collect</h2>
                 <p>
                   When you schedule a pickup or book a service with APM Laundry &amp; Dry Cleaning (&quot;APM&quot;), we collect basic contact information necessary to provide our service, including your full name, phone number, email address, physical pickup/delivery address, and any special care instructions.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-lg sm:text-xl font-bold text-[#202020] mb-2">2. How We Use Your Information</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-[#1E293B] mb-2">2. How We Use Your Information</h2>
                 <p>
-                  Your information is utilized solely to:
+                  We use your information only to:
                 </p>
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                   <li>Coordinate doorstep laundry pickup and return deliveries.</li>
@@ -100,24 +100,24 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-lg sm:text-xl font-bold text-[#202020] mb-2">3. Data Protection &amp; Confidentiality</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-[#1E293B] mb-2">3. Data Protection &amp; Confidentiality</h2>
                 <p>
                   We treat your personal details with strict confidentiality. We do not sell, rent, or trade your contact information to third parties for marketing purposes. Access is restricted to authorized operations personnel for pickup logistics.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-lg sm:text-xl font-bold text-[#202020] mb-2">4. Communications &amp; WhatsApp Updates</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-[#1E293B] mb-2">4. Communications &amp; WhatsApp Updates</h2>
                 <p>
-                  If you opt in to receive WhatsApp updates, we use your phone number to share timely order progress notifications and delivery dispatch alerts. You can opt out of non-critical messaging at any time by notifying our support line.
+                  If you choose to receive WhatsApp updates, we use your phone number to share order progress and delivery details. You can opt out of messages at any time by letting our support team know.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-lg sm:text-xl font-bold text-[#202020] mb-2">5. Contact Us</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-[#1E293B] mb-2">5. Contact Us</h2>
                 <p>
                   If you have questions regarding this Privacy Policy or wish to update your contact preferences, please reach out via our{" "}
-                  <Link href="/#contact" className="text-[#C74708] font-semibold hover:underline">
+                  <Link href="/#contact" className="text-[#1D6F9E] font-semibold hover:underline">
                     Contact &amp; Booking section
                   </Link>
                   .

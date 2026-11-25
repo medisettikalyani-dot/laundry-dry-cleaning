@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #F8F0E7;
-  --foreground: #202020;
+  --background: #F4F8FA;
+  --foreground: #1E293B;
 }
 
 html {
@@ -27,7 +27,7 @@ p {
 
 /* Accessible focus styling */
 :focus-visible {
-  outline: 2px solid #C74708;
+  outline: 2px solid #1D6F9E;
   outline-offset: 2px;
 }
 
@@ -47,3 +47,16 @@ p {
 img {
   image-rendering: auto;
 }
+
+/* Hide scrollbar utility for clean carousels across all browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+

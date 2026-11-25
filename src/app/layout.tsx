@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "APM Laundry & Dry Cleaning | Garment Care in Hyderabad",
     description:
-      "Professional laundry, steam press, and dry cleaning in Hyderabad. Convenient online booking with prompt doorstep pickup and delivery.",
+      "Professional laundry, steam pressing, and dry cleaning in Hyderabad. Easy online booking with doorstep pickup and delivery.",
     url: siteConfig.siteUrl,
     siteName: siteConfig.name,
     locale: "en_IN",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "APM Laundry & Dry Cleaning | Garment Care in Hyderabad",
     description:
-      "Professional wash & fold, wash & iron, and dry cleaning services in Hyderabad with prompt doorstep pickup.",
+      "Professional wash & fold, wash & iron, and dry cleaning services in Hyderabad with doorstep pickup and delivery.",
     images: ["/images/contact-laundry.jpg"],
   },
   robots: {
@@ -143,7 +143,7 @@ const structuredData = {
               "@type": "Service",
               name: "Wash & Iron",
               description:
-                "Commercial-grade washing paired with precision steam pressing for shirts, trousers, and daily wear.",
+                "Gentle machine washing paired with neat steam pressing for shirts, trousers, kurtas, suits, and everyday wear.",
               provider: {
                 "@id": `${siteConfig.siteUrl}/#localbusiness`,
               },
@@ -153,21 +153,9 @@ const structuredData = {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Dry Cleaning",
+              name: "Dry Clean",
               description:
-                "Specialized gentle solvent care for suits, sherwanis, silk sarees, blazers, and delicate formal wear.",
-              provider: {
-                "@id": `${siteConfig.siteUrl}/#localbusiness`,
-              },
-            },
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Wash & Fold",
-              description:
-                "Everyday routine laundry care billed transparently by weight with gentle tumble drying and neat folding.",
+                "Careful dry cleaning for suits, sherwanis, silk sarees, blazers, and delicate formal wear.",
               provider: {
                 "@id": `${siteConfig.siteUrl}/#localbusiness`,
               },
@@ -179,7 +167,7 @@ const structuredData = {
               "@type": "Service",
               name: "Doorstep Pickup & Delivery in Hyderabad",
               description:
-                "Convenient doorstep collection and return delivery for all laundry and dry cleaning orders across Hyderabad.",
+                "Convenient doorstep pickup and return delivery for all laundry and dry cleaning orders across Hyderabad (free within 3 km).",
               provider: {
                 "@id": `${siteConfig.siteUrl}/#localbusiness`,
               },
@@ -232,7 +220,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col antialiased bg-[#F8F0E7] text-[#202020] font-sans">
+      <body className="min-h-screen flex flex-col antialiased bg-[#F4F8FA] text-[#1E293B] font-sans">
         {children}
         <FloatingWhatsApp />
       </body>

@@ -11,25 +11,25 @@ interface GalleryPhoto {
 const galleryPhotos: GalleryPhoto[] = [
   {
     id: "washing",
-    title: "Gentle Wash Cycles",
+    title: "Gentle Wash Care",
     alt: "Commercial washing machines with gentle fabric care",
     src: "/images/gallery/gallery-washing.jpg",
   },
   {
     id: "ironing",
-    title: "Precision Steam Press",
+    title: "Professional Steam Press",
     alt: "Professional steam ironing of fresh cotton garments",
     src: "/images/gallery/gallery-ironing.jpg",
   },
   {
     id: "folded",
-    title: "Neatly Folded Linens",
+    title: "Neatly Folded Clothes",
     alt: "Pristine stack of freshly folded linens and clothes",
     src: "/images/gallery/gallery-folded.jpg",
   },
   {
     id: "dryCleaning",
-    title: "Specialist Dry Cleaning",
+    title: "Careful Dry Cleaning",
     alt: "Dry cleaned tailored suits on boutique wooden hangers",
     src: "/images/gallery/gallery-dry-cleaning.jpg",
   },
@@ -39,16 +39,16 @@ export function Gallery() {
   return (
     <section
       id="gallery"
-      className="relative overflow-hidden py-12 sm:py-16 bg-[#F8F0E7]"
+      className="relative overflow-hidden py-12 sm:py-16 bg-[#F4F8FA]"
       aria-label="Our Garment Care Studio Gallery"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-8 sm:mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#202020]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1E293B]">
             Inside Our Studio
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#4F4F4F] [text-wrap:pretty]">
-            A look inside our Hyderabad facility: commercial washing drums, precision steam tables, and protective packaging.
+          <p className="mt-2 text-sm sm:text-base text-[#475569] [text-wrap:pretty]">
+            A look inside our Hyderabad facility, where we wash, steam press, and carefully pack your clothes.
           </p>
         </div>
 
@@ -57,9 +57,9 @@ export function Gallery() {
           {galleryPhotos.map((photo) => (
             <div
               key={photo.id}
-              className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-[#E9D9C9] shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="group flex flex-col rounded-2xl overflow-hidden bg-white border border-[#E2EDF3] shadow-xs hover:shadow-md transition-shadow duration-200"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#FAF5EF]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#EBF5FA]">
                 <Image
                   src={photo.src}
                   alt={photo.alt}
@@ -69,7 +69,7 @@ export function Gallery() {
                 />
               </div>
               <div className="p-3 sm:p-4">
-                <h3 className="text-sm font-semibold text-[#202020]">
+                <h3 className="text-sm font-semibold text-[#1E293B]">
                   {photo.title}
                 </h3>
               </div>

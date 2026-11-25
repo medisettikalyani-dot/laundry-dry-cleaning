@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export interface CustomerReview {
   id: string;
   name: string;
-  area: string;
+  area?: string;
   rating: number;
   review: string;
   timeAgo: string;
@@ -25,7 +25,6 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-1",
     name: "Vikram Reddy",
-    area: "Jubilee Hills",
     rating: 5,
     review:
       "Got my 3-piece suit and sherwani dry cleaned for a family wedding. Flawless finish, perfectly steam pressed, and delivered right on time.",
@@ -34,7 +33,6 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-2",
     name: "Priya Sharma",
-    area: "Madhapur",
     rating: 5,
     review:
       "Regular wash and iron service is fantastic. My office shirts and daily kurtas always come back crisp, neatly packed, and fresh.",
@@ -43,25 +41,22 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-3",
     name: "Karthik Subramanian",
-    area: "Hitec City",
     rating: 5,
     review:
-      "Super convenient doorstep pickup and delivery in Hitec City. Great fabric care and very reliable turnaround time. Highly recommended!",
+      "The doorstep pickup and delivery is super convenient. They took great care of our clothes and delivered everything right on time. Highly recommended!",
     timeAgo: "3 weeks ago",
   },
   {
     id: "review-4",
     name: "Ananya Rao",
-    area: "Banjara Hills",
     rating: 5,
     review:
-      "Handled my pure silk sarees with exceptional care. Fabric feels soft, colors remain rich, and the pleating is immaculate.",
+      "Handled my pure silk sarees with great care. The fabric feels soft, colors look vibrant, and the pleats are neat and crisp.",
     timeAgo: "1 month ago",
   },
   {
     id: "review-5",
     name: "Rohit Varma",
-    area: "Gachibowli",
     rating: 5,
     review:
       "Best everyday laundry service. Clothes smell clean, neatly sorted, and folded ready for the closet. Saves me hours every single week.",
@@ -70,7 +65,6 @@ const customerReviews: CustomerReview[] = [
   {
     id: "review-6",
     name: "Dr. Meera Nair",
-    area: "Kondapur",
     rating: 5,
     review:
       "Sent heavy winter coats and woolen blazers for dry cleaning. Stains were completely removed with zero fabric damage. Outstanding service.",
@@ -129,57 +123,68 @@ export function CustomerReviews({
     <section
       id="reviews"
       className={cn(
-        "relative overflow-hidden py-12 sm:py-16 md:py-20 bg-[#F8F0E7]",
+        "relative overflow-hidden py-12 sm:py-16 md:py-20 bg-[#F4F8FA]",
         className
       )}
       aria-label="Customer Reviews"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header: Plain heading without eyebrow label */}
-        <div className="max-w-2xl mb-10 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#202020]">
-            Customer Reviews
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-[#4F4F4F] [text-wrap:pretty]">
-            Read what Hyderabad residents say about our pickup speed, fabric quality, and steam press finish.
-          </p>
+        {/* Section Header with Arrow Controls */}
+        <div className="flex items-center justify-between gap-4 mb-8 sm:mb-10">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1E293B]">
+              Customer Reviews
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-[#475569] [text-wrap:pretty]">
+              Read what our customers across Hyderabad have to say about our service.
+            </p>
+          </div>
+
+          {/* Navigation Arrows */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => handleScroll("left")}
+              disabled={!canScrollLeft}
+              aria-label="Previous reviews"
+              className={cn(
+                "w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-150",
+                canScrollLeft
+                  ? "bg-white text-[#1E293B] border-[#E2EDF3] hover:border-[#1D6F9E] hover:text-[#1D6F9E] active:scale-95 shadow-2xs"
+                  : "bg-white/40 text-slate-300 border-[#E2EDF3]/50 cursor-not-allowed"
+              )}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScroll("right")}
+              disabled={!canScrollRight}
+              aria-label="Next reviews"
+              className={cn(
+                "w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-150",
+                canScrollRight
+                  ? "bg-white text-[#1E293B] border-[#E2EDF3] hover:border-[#1D6F9E] hover:text-[#1D6F9E] active:scale-95 shadow-2xs"
+                  : "bg-white/40 text-slate-300 border-[#E2EDF3]/50 cursor-not-allowed"
+              )}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Carousel / Card Track */}
         <div className="relative">
-          {/* Left Arrow Button */}
-          <button
-            type="button"
-            onClick={() => handleScroll("left")}
-            disabled={!canScrollLeft}
-            aria-label="Previous reviews"
-            className={cn(
-              "hidden md:flex absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-20",
-              "w-11 h-11 rounded-full items-center justify-center min-h-[44px] min-w-[44px]",
-              "bg-white border border-[#E9D9C9] text-[#202020]",
-              "shadow-sm transition-all duration-200",
-              "hover:bg-[#C74708] hover:text-white hover:border-[#C74708]",
-              "disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#202020]"
-            )}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-
           {/* Scrollable Track */}
           <div
             ref={scrollContainerRef}
             className={cn(
-              "flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth py-2 px-1",
-              "snap-x snap-mandatory items-stretch",
-              "[&::-webkit-scrollbar]:hidden"
+              "flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto scroll-smooth py-2 px-1",
+              "snap-x snap-mandatory items-stretch no-scrollbar"
             )}
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
@@ -187,11 +192,11 @@ export function CustomerReviews({
               <div
                 key={item.id}
                 className={cn(
-                  "flex-shrink-0 w-[280px] sm:w-[320px] md:w-[340px] snap-start",
+                  "flex-shrink-0 w-[82vw] max-w-[320px] sm:w-[320px] md:w-[340px] snap-start",
                   "flex flex-col justify-between",
                   "p-5 sm:p-6 rounded-2xl",
-                  "bg-white border border-[#E9D9C9]",
-                  "shadow-sm hover:shadow-md transition-shadow duration-200"
+                  "bg-white border border-[#E2EDF3]",
+                  "shadow-xs hover:shadow-md transition-shadow duration-200"
                 )}
               >
                 <div>
@@ -204,7 +209,7 @@ export function CustomerReviews({
                       {[1, 2, 3, 4, 5].map((star) => (
                         <svg
                           key={star}
-                          className="w-4 h-4 text-[#E8B830] fill-[#E8B830]"
+                          className="w-4 h-4 text-[#EAB308] fill-[#EAB308]"
                           viewBox="0 0 24 24"
                           aria-hidden="true"
                         >
@@ -214,112 +219,37 @@ export function CustomerReviews({
                         </svg>
                       ))}
                     </div>
-                    <span className="text-sm text-[#54504C]">{item.timeAgo}</span>
+                    <span className="text-sm text-[#64748B]">{item.timeAgo}</span>
                   </div>
 
                   {/* Customer Review text */}
-                  <p className="text-sm sm:text-base text-[#202020] leading-relaxed [text-wrap:pretty]">
+                  <p className="text-sm sm:text-base text-[#1E293B] leading-relaxed [text-wrap:pretty]">
                     &ldquo;{item.review}&rdquo;
                   </p>
                 </div>
 
                 {/* Bottom Reviewer Info: H3 for heading order */}
-                <div className="pt-4 mt-4 border-t border-[#E9D9C9] flex items-center justify-between gap-3">
+                <div className="pt-4 mt-4 border-t border-[#E2EDF3] flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div
-                      className="w-9 h-9 rounded-full bg-[#FAF5EF] border border-[#E9D9C9] text-[#202020] font-bold text-sm flex items-center justify-center flex-shrink-0"
+                      className="w-9 h-9 rounded-full bg-[#EBF5FA] border border-[#E2EDF3] text-[#1E293B] font-bold text-sm flex items-center justify-center flex-shrink-0"
                       aria-hidden="true"
                     >
                       {getInitials(item.name)}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-sm font-semibold text-[#202020] truncate">
+                      <h3 className="text-sm font-semibold text-[#1E293B] truncate">
                         {item.name}
                       </h3>
-                      <p className="text-sm text-[#54504C] truncate">{item.area}</p>
                     </div>
                   </div>
-                  <span className="text-sm font-medium text-[#54504C] flex items-center gap-1">
+                  <span className="text-sm font-medium text-[#64748B] flex items-center gap-1">
                     Google Review
                   </span>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Right Arrow Button */}
-          <button
-            type="button"
-            onClick={() => handleScroll("right")}
-            disabled={!canScrollRight}
-            aria-label="Next reviews"
-            className={cn(
-              "hidden md:flex absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-20",
-              "w-11 h-11 rounded-full items-center justify-center min-h-[44px] min-w-[44px]",
-              "bg-white border border-[#E9D9C9] text-[#202020]",
-              "shadow-sm transition-all duration-200",
-              "hover:bg-[#C74708] hover:text-white hover:border-[#C74708]",
-              "disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#202020]"
-            )}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Navigation Arrows */}
-        <div className="flex md:hidden items-center justify-center gap-3 mt-6">
-          <button
-            type="button"
-            onClick={() => handleScroll("left")}
-            disabled={!canScrollLeft}
-            aria-label="Previous reviews"
-            className={cn(
-              "w-11 h-11 min-h-[44px] min-w-[44px] rounded-full flex items-center justify-center",
-              "bg-white border border-[#E9D9C9] text-[#202020] shadow-sm",
-              "hover:bg-[#C74708] hover:text-white hover:border-[#C74708]",
-              "disabled:opacity-30 disabled:cursor-not-allowed"
-            )}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            onClick={() => handleScroll("right")}
-            disabled={!canScrollRight}
-            aria-label="Next reviews"
-            className={cn(
-              "w-11 h-11 min-h-[44px] min-w-[44px] rounded-full flex items-center justify-center",
-              "bg-white border border-[#E9D9C9] text-[#202020] shadow-sm",
-              "hover:bg-[#C74708] hover:text-white hover:border-[#C74708]",
-              "disabled:opacity-30 disabled:cursor-not-allowed"
-            )}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
         </div>
       </div>
     </section>

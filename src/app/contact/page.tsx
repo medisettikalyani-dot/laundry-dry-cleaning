@@ -1,36 +1,36 @@
 import React from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { ContactCard } from "@/components/ContactCard";
-import { Footer } from "@/components/Footer";
 import { siteConfig } from "@/lib/seoConfig";
 
 export const metadata: Metadata = {
-  title: "Book Laundry & Dry Cleaning Pickup in Hyderabad",
+  title: "Contact & Book Pickup | APM Laundry & Dry Cleaning Hyderabad",
   description:
-    "Schedule doorstep laundry, wash & iron, or luxury dry cleaning pickup in Hyderabad with APM. Fast turnaround, transparent pricing, and gentle fabric care. Book online now.",
+    "Contact APM Laundry & Dry Cleaning in Manikonda, Hyderabad. Book a doorstep pickup on WhatsApp or call us directly. Free pickup within 3 km.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Book Laundry & Dry Cleaning Pickup in Hyderabad | APM",
+    title: "Contact & Book Pickup | APM Laundry & Dry Cleaning Hyderabad",
     description:
-      "Schedule doorstep laundry, wash & iron, or luxury dry cleaning pickup in Hyderabad with APM. Fast turnaround, transparent pricing, and gentle fabric care.",
+      "Schedule a doorstep laundry or dry cleaning pickup in Hyderabad with APM. Call us or book directly on WhatsApp.",
     url: "/contact",
     images: [
       {
         url: "/images/contact-laundry.jpg",
         width: 1200,
         height: 896,
-        alt: "APM Laundry & Dry Cleaning - Book Your Service in Hyderabad",
+        alt: "APM Laundry & Dry Cleaning - Contact & Booking Hyderabad",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Book Laundry & Dry Cleaning Pickup in Hyderabad | APM",
+    title: "Contact & Book Pickup | APM Laundry & Dry Cleaning Hyderabad",
     description:
-      "Schedule doorstep laundry, wash & iron, or luxury dry cleaning pickup in Hyderabad with APM. Fast turnaround, transparent pricing, and gentle fabric care.",
+      "Schedule a doorstep laundry or dry cleaning pickup in Hyderabad with APM. Quick turnaround, clear pricing, and careful fabric care.",
     images: ["/images/contact-laundry.jpg"],
   },
 };
@@ -48,7 +48,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Book Your Service",
+      name: "Contact & Booking",
       item: `${siteConfig.siteUrl}/contact`,
     },
   ],
@@ -57,9 +57,9 @@ const breadcrumbSchema = {
 const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Book Laundry Service in Hyderabad",
+  name: "Contact APM Laundry & Dry Cleaning Hyderabad",
   description:
-    "Online booking and pickup coordination for APM Laundry & Dry Cleaning services across Hyderabad.",
+    "Direct contact details, location, phone, and pickup coordination for APM Laundry & Dry Cleaning services across Hyderabad.",
   url: `${siteConfig.siteUrl}/contact`,
   mainEntity: {
     "@id": `${siteConfig.siteUrl}/#localbusiness`,
@@ -67,22 +67,57 @@ const contactPageSchema = {
 };
 
 export default function ContactPage() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8F0E7] text-[#202020]">
+    <div className="min-h-screen flex flex-col bg-[#F4F8FA] text-[#1E293B] overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([breadcrumbSchema, contactPageSchema]),
         }}
       />
-      {/* Existing Consistent Navbar */}
+      {/* Navbar */}
       <Navbar />
 
-      {/* Main Dedicated Contact Page View */}
-      <main className="flex-1 flex flex-col justify-center py-4 sm:py-6">
-        <ContactCard />
+      {/* Main Dedicated Contact View - Centered and Screen Fitted */}
+      <main className="flex-1 flex items-center justify-center py-4 sm:py-6 px-3 sm:px-6">
+        <ContactCard isHomepage={false} />
       </main>
-      <Footer />
+
+      {/* Compact Clean Footer to fit screen size without bloated scrolling */}
+      <footer className="w-full border-t border-[#E2EDF3] bg-white py-3 px-4 sm:px-6 text-xs text-[#64748B]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5 text-center md:text-left">
+          <p>
+            © {currentYear} {siteConfig.name} · {siteConfig.address.addressLocality} · Free pickup within 3 km
+          </p>
+          <p className="text-[#64748B]">
+            Website created by{" "}
+            <a
+              href="https://www.edonesolution.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#1D6F9E] hover:text-[#0B2538] font-medium transition-colors underline decoration-[#CBD5E1] hover:decoration-[#1D6F9E] underline-offset-2"
+            >
+              Edone solutions
+            </a>
+          </p>
+          <div className="flex items-center gap-4 font-medium">
+            <Link href="/" className="hover:text-[#1D6F9E] transition-colors">
+              Home
+            </Link>
+            <Link href="/#services" className="hover:text-[#1D6F9E] transition-colors">
+              Services
+            </Link>
+            <Link href="/privacy" className="hover:text-[#1D6F9E] transition-colors">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-[#1D6F9E] transition-colors">
+              Terms
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
